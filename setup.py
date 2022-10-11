@@ -213,20 +213,20 @@ class BuildModules(build_ext.build_ext):
   def run(self):
     _check_bazel()
     external_files = [
-        'face_detection/face_detection_full_range_sparse.tflite',
-        'face_detection/face_detection_short_range.tflite',
-        'face_landmark/face_landmark.tflite',
-        'face_landmark/face_landmark_with_attention.tflite',
-        'hand_landmark/hand_landmark_full.tflite',
-        'hand_landmark/hand_landmark_lite.tflite',
-        'holistic_landmark/hand_recrop.tflite',
-        'iris_landmark/iris_landmark.tflite',
-        'palm_detection/palm_detection_full.tflite',
-        'palm_detection/palm_detection_lite.tflite',
-        'pose_detection/pose_detection.tflite',
+        # 'face_detection/face_detection_full_range_sparse.tflite',
+        # 'face_detection/face_detection_short_range.tflite',
+        # 'face_landmark/face_landmark.tflite',
+        # 'face_landmark/face_landmark_with_attention.tflite',
+        # 'hand_landmark/hand_landmark_full.tflite',
+        # 'hand_landmark/hand_landmark_lite.tflite',
+        # 'holistic_landmark/hand_recrop.tflite',
+        # 'iris_landmark/iris_landmark.tflite',
+        # 'palm_detection/palm_detection_full.tflite',
+        # 'palm_detection/palm_detection_lite.tflite',
+        # 'pose_detection/pose_detection.tflite',
         'pose_landmark/pose_landmark_full.tflite',
-        'selfie_segmentation/selfie_segmentation.tflite',
-        'selfie_segmentation/selfie_segmentation_landscape.tflite',
+        # 'selfie_segmentation/selfie_segmentation.tflite',
+        # 'selfie_segmentation/selfie_segmentation_landscape.tflite',
     ]
     for elem in external_files:
       external_file = os.path.join('mediapipe/modules/', elem)
@@ -234,13 +234,13 @@ class BuildModules(build_ext.build_ext):
       self._download_external_file(external_file)
 
     binary_graphs = [
-        'face_detection/face_detection_short_range_cpu',
-        'face_detection/face_detection_full_range_cpu',
-        'face_landmark/face_landmark_front_cpu',
-        'hand_landmark/hand_landmark_tracking_cpu',
-        'holistic_landmark/holistic_landmark_cpu', 'objectron/objectron_cpu',
+        # 'face_detection/face_detection_short_range_cpu',
+        # 'face_detection/face_detection_full_range_cpu',
+        # 'face_landmark/face_landmark_front_cpu',
+        # 'hand_landmark/hand_landmark_tracking_cpu',
+        # 'holistic_landmark/holistic_landmark_cpu', 'objectron/objectron_cpu',
         'pose_landmark/pose_landmark_cpu',
-        'selfie_segmentation/selfie_segmentation_cpu'
+        # 'selfie_segmentation/selfie_segmentation_cpu'
     ]
     for elem in binary_graphs:
       binary_graph = os.path.join('mediapipe/modules/', elem)
