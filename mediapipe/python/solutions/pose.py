@@ -90,15 +90,18 @@ class PoseLandmark(enum.IntEnum):
 _BINARYPB_FILE_PATH = 'mediapipe/modules/pose_landmark/pose_landmark_cpu.binarypb'
 
 
-def _download_oss_pose_landmark_model(model_complexity):
+def _download_oss_pose_landmark_model(model_complexity, root_dir):
   """Downloads the pose landmark lite/heavy model from the MediaPipe Github repo if it doesn't exist in the package."""
+  lite_version = f'{root_dir}/pose_landmark_lite.tflite'
+  heavy_version = f'{root_dir}/pose_landmark_heavy.tflite'
+  
+
 
   if model_complexity == 0:
-    download_utils.download_oss_model(
-        'mediapipe/modules/pose_landmark/pose_landmark_lite.tflite')
+    download_utils.download_oss_model(lite_version)
   elif model_complexity == 2:
     download_utils.download_oss_model(
-        'mediapipe/modules/pose_landmark/pose_landmark_heavy.tflite')
+        heavy_version)
 
 
 class Pose(SolutionBase):
@@ -118,7 +121,8 @@ class Pose(SolutionBase):
                enable_segmentation=False,
                smooth_segmentation=True,
                min_detection_confidence=0.5,
-               min_tracking_confidence=0.5):
+               min_tracking_confidence=0.5,
+               root_dir='mediapipe/modules/pose_landmark'):
     """Initializes a MediaPipe Pose object.
 
     Args:
@@ -142,7 +146,7 @@ class Pose(SolutionBase):
         pose landmarks to be considered tracked successfully. See details in
         https://solutions.mediapipe.dev/pose#min_tracking_confidence.
     """
-    _download_oss_pose_landmark_model(model_complexity)
+    _download_oss_pose_landmark_model(model_complexity, root_dir)
     super().__init__(
         binary_graph_path=_BINARYPB_FILE_PATH,
         side_inputs={
